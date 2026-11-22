@@ -4,7 +4,7 @@ const state = {
   manifest: null, report: null, tables: null, charts: null, ai: null, metrics: null,
   exportManifest: null,
   activeTable: 0, chartDimension: "销量", generated: false,
-  draftS: {}, origS: {}, acceptS: {}, logS: [], fbS: {}, rawDemo: {}, _lastFocus: null,
+  _lastFocus: null,
 };
 
 const AI_LABELS = {
@@ -12,13 +12,6 @@ const AI_LABELS = {
   department_analysis: "各部门分析", category_insights: "品类洞察",
 };
 const AI_SOURCES = { overall_summary: "表1", quarterly_yearly: "表2", transit_risk: "表5/表2", department_analysis: "表3/表5", category_insights: "表7" };
-const RAW_DEMO = {
-  overall_summary: "本月合计达成918.0w，达成率120.0%（表1）。报货系统348.3w、成品领用569.7w（表1）。 整体表现极佳，无需关注季度与年度衔接。",
-  department_analysis: "仿石漆事业部达成率预计超过120%，是核心贡献者；美妆领用仅达成60%，需重点关注。",
-  category_insights: "仿石漆和马上住产品线占周边超过90%；美妆自营品占比仅约30%。",
-  quarterly_yearly: "季度累计918.0w，达成率80.0%（表2）；年度累计4575w，达成率90.0%（表2）。季度年度均大幅超额，无需追赶缺口部门。",
-  transit_risk: "在途16.4w、未发16.4w（表5）。月度达成率150.0%（表1）。库存积压严重，建议立即停止报货。",
-};
 const STEPS = ["发现文件", "加载数据", "计算指标", "更新表格", "更新段落", "生成图表", "保存文件"];
 
 function el(id) { return document.getElementById(id); }
@@ -210,9 +203,6 @@ function renderAi() {
   text(badge, state.ai.used_ai ? "AI 草稿 + 数字护栏" : "模板分析");
   text(el("ai-meta"), `模型 ${state.ai.model || "模板"} · prompt ${state.ai.prompt_version || "v1"} · 数据范围 ${state.ai.data_scope || "sample_data"} · 数字来自引擎，护栏拦截幻觉`);
   const box = el("ai-sections"); box.replaceChildren();
-  if (!Object.keys(state.origS).length) {
-    for (const k of Object.keys(AI_LABELS)) { state.origS[k] = state.ai[k] || ""; state.draftS[k] = state.origS[k]; }
-  }
   for (const [k, label] of Object.entries(AI_LABELS)) {
     const card = document.createElement("div"); card.className = "draft-card" + (k === "transit_risk" ? " risk" : "");
     const head = document.createElement("div"); head.className = "draft-head";
@@ -226,7 +216,7 @@ function renderAi() {
       text(prov, { ai: "AI 解读", rule: "规则事实", grounded: "护栏 grounding" }[fs] || fs);
       head.append(prov);
     }
-    const val = state.draftS[k] || "";
+    const val = state.ai[k] || "";
     const sentences = val.split(/(?<=[。；])/);
     const facts = sentences.filter((s) => /\d/.test(s)).join("");
     const quals = sentences.filter((s) => !/\d/.test(s)).join("");
@@ -236,32 +226,13 @@ function renderAi() {
     const b2 = document.createElement("b"); text(b2, " 建议 ");
     const s2 = document.createElement("span"); text(s2, quals || "—");
     struct.append(b1, s1, b2, s2);
-    const ta = document.createElement("textarea"); ta.value = val;
-    ta.setAttribute("aria-label", label + " 草稿");
-    ta.addEventListener("input", () => { state.draftS[k] = ta.value; });
-    const actions = document.createElement("div"); actions.className = "draft-actions";
-    const mk = (label, fn, on) => { const b = document.createElement("button"); text(b, label); if (on) b.className = "on"; b.addEventListener("click", fn); return b; };
-    actions.append(
-      mk("接受", () => { state.draftS[k] = ta.value; if (ta.value !== state.origS[k]) state.logS.push({ field: k, action: "edit" }); state.acceptS[k] = ta.value; renderAi(); }, !!state.acceptS[k]),
-      mk("还原", () => { state.draftS[k] = state.origS[k]; delete state.acceptS[k]; delete state.rawDemo[k]; state.logS.push({ field: k, action: "revert" }); renderAi(); }),
-      mk("重生成(护栏演示)", () => { state.rawDemo[k] = RAW_DEMO[k] || state.origS[k]; state.draftS[k] = state.origS[k]; state.logS.push({ field: k, action: "guard-replace" }); renderAi(); }),
-      mk("有用", () => { state.fbS[k] = "up"; renderAi(); }, state.fbS[k] === "up"),
-      mk("无用", () => { state.fbS[k] = "down"; renderAi(); }, state.fbS[k] === "down"),
-    );
-    card.append(head, struct, ta, actions);
-    const before = state.rawDemo[k] || (state.draftS[k] !== state.origS[k] ? state.origS[k] : null);
-    if (before) {
-      const det = document.createElement("details"); det.className = "draft-diff";
-      if (state.rawDemo[k]) det.open = true;
-      const sum = document.createElement("summary"); text(sum, state.rawDemo[k] ? "前后对照（模型胡编 → 护栏替换）" : "前后对照（原文 → 当前）");
-      const p1 = document.createElement("pre"); text(p1, "原文/模型：\n" + before);
-      const p2 = document.createElement("pre"); text(p2, "当前/护栏后：\n" + state.draftS[k]);
-      det.append(sum, p1, p2); card.append(det);
-    }
-    const meta = document.createElement("div"); meta.className = "draft-meta";
-    text(meta, `已接受 ${Object.keys(state.acceptS).length} 段 · 操作 ${state.logS.length} 次 · 反馈 ${state.fbS[k] || "未评"} · 静态模拟，真实编辑/导出在 Streamlit 版`);
-    card.append(meta); box.append(card);
+    const body = document.createElement("p"); body.className = "draft-body"; text(body, val);
+    card.append(head, struct, body);
+    box.append(card);
   }
+  const note = document.createElement("p"); note.className = "muted ai-readonly-note";
+  text(note, "本页为预生成只读展示。人工改稿 / 导出数字审计在真实闭环（Streamlit）完成。");
+  box.append(note);
 }
 
 function renderDownload() {

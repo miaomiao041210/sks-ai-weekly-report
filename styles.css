@@ -151,6 +151,8 @@ caption { text-align: left; padding: 8px 12px; font-weight: 700; }
 .prov-grounded { color: var(--amber-ink); border-color: #E2CBA0; background: #FBF3E4; }
 .draft-struct { font-size: 12px; color: var(--muted); margin: 6px 0; }
 .draft-struct b { color: var(--pine); }
+.draft-body { font-size: 13px; color: var(--ink); margin: 6px 0 0; line-height: 1.6; }
+.ai-readonly-note { margin-top: 12px; }
 .draft-card textarea { width: 100%; min-height: 80px; font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 2px; padding: 8px; }
 .draft-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .draft-actions button { border: 1px solid var(--line); background: var(--surface); border-radius: 2px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
