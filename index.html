@@ -7,7 +7,7 @@
   <title>三棵树美好生活部周报 · Demo</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css?v=11" />
-  <script src="app.js?v=17" defer></script>
+  <script src="app.js?v=18" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -98,7 +98,7 @@
           <ol class="flow">
             <li>Excel 输入校验（fail 阻断 / warn 确认）。</li>
             <li>指标引擎计算周/月/季/年，数字唯一来源。</li>
-            <li>LLM 只解释 metrics；数字护栏校验，不符整段替换为引擎事实句。</li>
+            <li>大模型只解释引擎指标；数字护栏校验，不符整段替换为引擎事实句。</li>
         <li>人工可编辑草稿；导出前逐段数字审计，改错即阻断。</li>
         <li>导出 Word 并校验 8 表 6 图 + 人工稿数字审计 + 文件 SHA256，通过才提供下载。</li>
           </ol>
@@ -106,7 +106,7 @@
           <div id="reconciliation"></div>
           <h2>回退案例</h2>
           <div class="callout warn"><b>缺列拦截</b>：validate 缺必需列时 fail 阻断并给出列名。</div>
-          <div class="callout"><b>无 Key / 断网兜底</b>：自动回退模板分析，badge 显示模板，流程不中断。</div>
+          <div class="callout"><b>无 Key / 断网兜底</b>：自动回退模板分析，顶部标识显示“模板分析”，流程不中断。</div>
           <h2>真实运行版</h2>
           <p class="muted">静态页仅预生成结果。真实闭环：<code>python3 -m streamlit run app.py</code>（本地/受控，不公开匿名）。</p>
         </section>
