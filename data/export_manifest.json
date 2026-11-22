@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "checks": [
+    {
+      "id": "tables",
+      "level": "pass",
+      "message": "表格数=8"
+    },
+    {
+      "id": "charts",
+      "level": "pass",
+      "message": "图数=6"
+    },
+    {
+      "id": "paragraphs",
+      "level": "pass",
+      "message": "关键段落存在"
+    }
+  ],
+  "sha256": "ddfc1cb4bc564688d7d37aeec432648d96b8c84f1053ab9368fe9c83a42f3818",
+  "generated_at": "2026-11-22T10:38:09+08:00",
+  "word": "assets/downloads/周报【内部产销】+【综合品】_更新至0728.docx"
+}

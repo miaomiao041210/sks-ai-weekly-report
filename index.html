@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <title>三棵树美好生活部周报 · Demo</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css?v=9" />
+  <script src="app.js?v=13" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="brand">
+      <h1>三棵树 · 美好生活部周报</h1>
+      <p>内部产销 + 综合品 · 自动汇总 Excel 生成 Word</p>
+    </div>
+    <div class="masthead-right">
+      <div class="date-block">
+        <span class="label">截止</span>
+        <span id="end-date" class="value num">—</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="impact-bar">
+    <button id="generate-btn" class="btn-primary" type="button">生成周报</button>
+  </div>
+
+  <div class="layout">
+    <nav class="rail" aria-label="报表视图">
+      <button class="rail-link active" data-view="overview" type="button" aria-current="page">总览</button>
+      <button class="rail-link" data-view="tables" type="button">8 张表格</button>
+      <button class="rail-link" data-view="charts" type="button">TOP3 图表</button>
+      <button class="rail-link" data-view="ai" type="button">AI 草稿</button>
+      <button class="rail-link" data-view="download" type="button">下载与校验</button>
+      <button class="rail-link" data-view="architecture" type="button">架构与证据</button>
+      <p class="rail-note">面试演示版 · 数据为脱敏样例 · 不代表真实经营结论</p>
+    </nav>
+
+    <main>
+      <section id="error" class="error-banner" hidden></section>
+      <section id="prestart" class="prestart">
+        <h2>生成脱敏样例</h2>
+        <p>点击“生成周报”查看预生成的 8 表、6 图、AI 草稿与导出校验。真实上传/计算/改稿闭环在 Streamlit 版（本地/受控）。</p>
+      </section>
+
+      <section id="results" hidden>
+        <section id="ledger" class="ledger"></section>
+        <p class="workflow-note">演示流程</p>
+        <ol id="workflow" class="workflow"></ol>
+
+        <section id="view-overview" class="view active">
+          <div class="overview-columns">
+            <div id="overview-tables" class="overview-left"></div>
+            <aside class="overview-right">
+              <div id="overview-annotations"></div>
+              <section id="overview-charts" class="panel-block"></section>
+            </aside>
+          </div>
+        </section>
+
+        <section id="view-tables" class="view">
+          <div id="table-tabs" class="subtabs" role="tablist" aria-label="表格视图"></div>
+          <div id="table-container"></div>
+        </section>
+
+        <section id="view-charts" class="view">
+          <div class="segmented" role="group" aria-label="图表维度">
+            <button class="segment active" data-dimension="销量" type="button" aria-pressed="true">销售额(万元)</button>
+            <button class="segment" data-dimension="实际发货量" type="button" aria-pressed="false">发货量(件)</button>
+          </div>
+          <div id="chart-gallery" class="chart-gallery"></div>
+        </section>
+
+        <section id="view-ai" class="view">
+          <div class="ai-head">
+            <h2>AI 草稿</h2>
+            <span id="ai-badge" class="badge"></span>
+          </div>
+          <p id="ai-meta" class="muted"></p>
+          <div id="ai-sections"></div>
+        </section>
+
+        <section id="view-download" class="view">
+          <h2>下载 Word 周报</h2>
+          <a id="download-link" class="btn-primary" href="#" download>下载 Word 文件</a>
+          <h2>产物校验清单</h2>
+          <div id="export-panel"></div>
+          <h2>说明</h2>
+          <ul id="notes" class="notes"></ul>
+        </section>
+
+        <section id="view-architecture" class="view">
+          <h2>AI 如何工作</h2>
+          <ol class="flow">
+            <li>Excel 输入校验（fail 阻断 / warn 确认）。</li>
+            <li>指标引擎计算周/月/季/年，数字唯一来源。</li>
+            <li>LLM 只解释 metrics；数字护栏校验，不符整段替换为引擎事实句。</li>
+            <li>人工接受/修改/重生成草稿，留 edit_log 与前后对照。</li>
+            <li>导出 Word 并校验 8 表 6 图段落 hash，提供下载。</li>
+          </ol>
+          <h2>跨表口径说明</h2>
+          <div id="reconciliation"></div>
+          <h2>回退案例</h2>
+          <div class="callout warn"><b>缺列拦截</b>：validate 缺必需列时 fail 阻断并给出列名。</div>
+          <div class="callout"><b>无 Key / 断网兜底</b>：自动回退模板分析，badge 显示模板，流程不中断。</div>
+          <h2>真实运行版</h2>
+          <p class="muted">静态页仅预生成结果。真实闭环：<code>python3 -m streamlit run app.py</code>（本地/受控，不公开匿名）。</p>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="chart-modal" class="modal" hidden>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-label="图表放大">
+      <button id="modal-close" class="icon-btn" type="button" aria-label="关闭">×</button>
+      <img id="modal-img" alt="放大图表" />
+      <p id="modal-caption"></p>
+    </div>
+  </div>
+</body>
+</html>

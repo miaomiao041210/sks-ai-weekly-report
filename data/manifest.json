@@ -1,0 +1,36 @@
+{
+  "project": "三棵树美好生活部 AI 周报分析助手",
+  "demo": true,
+  "data_scope": "sample_data",
+  "end_date": "2026-07-28",
+  "generated_at": "2026-11-22T10:38:09+08:00",
+  "engine_version": "0.1.0",
+  "ai_used": true,
+  "assets": {
+    "report": "data/report.json",
+    "tables": "data/tables.json",
+    "charts": "data/charts.json",
+    "ai_analysis": "data/ai_analysis.json",
+    "metrics": "data/metrics.json",
+    "word": "assets/downloads/周报【内部产销】+【综合品】_更新至0728.docx"
+  },
+  "hashes": {
+    "data/report.json": "7c539d0ad974e8600405b6df1b1d88629b8e13ffa9bc601f42af9d2a81247312",
+    "data/tables.json": "6a63c72a3201cdaebb285886b1a99f651ffea15518bd7788cd38a093ed16e48b",
+    "data/charts.json": "9db4070ab2741a548464b2a3730381259c8930180588df5ef02c95adfb8b2eb7",
+    "data/ai_analysis.json": "eb37db7c7f513699e00d99b9f3954f2dc27116a277e16280207c5f1e82bafda5",
+    "data/metrics.json": "ddfb72cf192e083d139251f4a175c25831b81ab2d503b06591f3537af92374ba",
+    "assets/downloads/周报【内部产销】+【综合品】_更新至0728.docx": "ddfc1cb4bc564688d7d37aeec432648d96b8c84f1053ab9368fe9c83a42f3818",
+    "assets/charts/01_精品服饰_TOP3_销量.png": "b83dbd37255e13447bdd6d0f7a3a563d813e0095a5db89730ce953a6b5da1ba4",
+    "assets/charts/02_舒适鞋类_TOP3_销量.png": "5fb8edac25319951de0edfabee0a2c09208bc62379db36861981282f74e97214",
+    "assets/charts/03_茗茶名酒_TOP3_销量.png": "e23845ef6e269e6dab1f3952d588210c65d71cd3ca6c059a5ca94e4b6bc15110",
+    "assets/charts/01_精品服饰_TOP3_实际发货量.png": "08d58f3cdee97460af51fe3562be803c9b1e7fc64c75bd6d62b14308ce3b0a73",
+    "assets/charts/02_舒适鞋类_TOP3_实际发货量.png": "249e07ae2f4a3d9f39ee86827a5d58334137a2f87495b4ccfe719cfe0a57f703",
+    "assets/charts/03_茗茶名酒_TOP3_实际发货量.png": "5ccfccecd94284263c52451f8ccc5bdbc91bef8bf8151a7fd94c075454cf8b12"
+  },
+  "counts": {
+    "tables": 8,
+    "charts": 6,
+    "word": 1
+  }
+}

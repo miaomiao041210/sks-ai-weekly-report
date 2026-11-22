@@ -1,0 +1,146 @@
+[
+  {
+    "id": "chart_01_销量",
+    "rank": 1,
+    "category": "精品服饰",
+    "dimension": "销量",
+    "image": "assets/charts/01_精品服饰_TOP3_销量.png",
+    "data": [
+      {
+        "product": "三棵树0016",
+        "sales_w": 7.18,
+        "quantity": 60
+      },
+      {
+        "product": "三棵树0376",
+        "sales_w": 5.54,
+        "quantity": 572
+      },
+      {
+        "product": "三棵树0717",
+        "sales_w": 5.25,
+        "quantity": 444
+      }
+    ]
+  },
+  {
+    "id": "chart_02_销量",
+    "rank": 2,
+    "category": "舒适鞋类",
+    "dimension": "销量",
+    "image": "assets/charts/02_舒适鞋类_TOP3_销量.png",
+    "data": [
+      {
+        "product": "示例产品0613",
+        "sales_w": 27.88,
+        "quantity": 9
+      },
+      {
+        "product": "示例产品0071",
+        "sales_w": 12.45,
+        "quantity": 406
+      },
+      {
+        "product": "示例产品0213",
+        "sales_w": 5.74,
+        "quantity": 628
+      }
+    ]
+  },
+  {
+    "id": "chart_03_销量",
+    "rank": 3,
+    "category": "茗茶名酒",
+    "dimension": "销量",
+    "image": "assets/charts/03_茗茶名酒_TOP3_销量.png",
+    "data": [
+      {
+        "product": "三棵树0938",
+        "sales_w": 6.02,
+        "quantity": 3
+      },
+      {
+        "product": "示例食品0014",
+        "sales_w": 5.89,
+        "quantity": 3
+      },
+      {
+        "product": "三棵树0450",
+        "sales_w": 5.02,
+        "quantity": 144
+      }
+    ]
+  },
+  {
+    "id": "chart_01_实际发货量",
+    "rank": 1,
+    "category": "精品服饰",
+    "dimension": "实际发货量",
+    "image": "assets/charts/01_精品服饰_TOP3_实际发货量.png",
+    "data": [
+      {
+        "product": "示例中文绿色Polo0216",
+        "sales_w": 0.59,
+        "quantity": 4500
+      },
+      {
+        "product": "三棵树0241",
+        "sales_w": 1.74,
+        "quantity": 900
+      },
+      {
+        "product": "三棵树0288",
+        "sales_w": 0.35,
+        "quantity": 762
+      }
+    ]
+  },
+  {
+    "id": "chart_02_实际发货量",
+    "rank": 2,
+    "category": "舒适鞋类",
+    "dimension": "实际发货量",
+    "image": "assets/charts/02_舒适鞋类_TOP3_实际发货量.png",
+    "data": [
+      {
+        "product": "示例产品0415",
+        "sales_w": 4.45,
+        "quantity": 924
+      },
+      {
+        "product": "示例产品0091",
+        "sales_w": 4.5,
+        "quantity": 872
+      },
+      {
+        "product": "三棵树1069",
+        "sales_w": 0.5,
+        "quantity": 758
+      }
+    ]
+  },
+  {
+    "id": "chart_03_实际发货量",
+    "rank": 3,
+    "category": "茗茶名酒",
+    "dimension": "实际发货量",
+    "image": "assets/charts/03_茗茶名酒_TOP3_实际发货量.png",
+    "data": [
+      {
+        "product": "三棵树0737",
+        "sales_w": 2.71,
+        "quantity": 518
+      },
+      {
+        "product": "示例饮品0084",
+        "sales_w": 2.58,
+        "quantity": 504
+      },
+      {
+        "product": "示例饮品0124",
+        "sales_w": 3.6,
+        "quantity": 490
+      }
+    ]
+  }
+]

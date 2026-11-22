@@ -1,0 +1,8 @@
+{
+  "sample_rows": 7396,
+  "cold_seconds": 2.5,
+  "warm_seconds": 1.5,
+  "tables": 8,
+  "charts": 6,
+  "word": 1
+}
