@@ -305,7 +305,7 @@ function renderArchitecture() {
   for (const row of rows) { const tr = document.createElement("tr"); for (const cell of row) { const td = document.createElement("td"); text(td, cell); tr.append(td); } tb.append(tr); }
   table.append(tb); r.append(table);
   const note = document.createElement("p"); note.className = "muted";
-  text(note, "表1 为渠道合计、表3 为含“其他”的部门拆解、表5 仅报货；样例目标按各表独立合成，跨表不构成调节关系，仅表1 内部可桥接。输入校验针对文件/列/日期/年度>=季度，0 fail。");
+  text(note, "为什么跨表达成率不同（不是算错）：表1 用渠道总目标（报货系统+成品领用、美妆+周边全渠道合计），表3/表5 用核心部门分解指标（按事业部/部门拆，范围比表1 小；表3 另含“其他”部门、表5 仅报货不含领用）。同一笔达成 ÷ 不同口径的目标 = 不同达成率，真实手工周报也是如此。样例目标按各表独立合成，跨表不构成调节关系，仅表1 内部可桥接（合计=报货+领用）；每个达成率的分母口径已在对应段落标明。输入校验针对文件/列/日期/年度>=季度，0 fail。");
   r.append(note);
 
 }
