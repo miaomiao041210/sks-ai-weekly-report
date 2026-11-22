@@ -226,8 +226,7 @@ function renderAi() {
     const b2 = document.createElement("b"); text(b2, " 建议 ");
     const s2 = document.createElement("span"); text(s2, quals || "—");
     struct.append(b1, s1, b2, s2);
-    const body = document.createElement("p"); body.className = "draft-body"; text(body, val);
-    card.append(head, struct, body);
+    card.append(head, struct);
     box.append(card);
   }
   const note = document.createElement("p"); note.className = "muted ai-readonly-note";
