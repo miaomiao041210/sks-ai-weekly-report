@@ -178,10 +178,11 @@ caption { text-align: left; padding: 8px 12px; font-weight: 700; }
 
 @media (max-width: 900px) {
   .layout { grid-template-columns: minmax(0, 1fr); }
-  .rail { display: flex; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--line); padding: 0; }
+  .rail { display: block; border-right: none; border-bottom: 1px solid var(--line); padding: 0; }
+  .rail-links { display: flex; flex-wrap: wrap; }
   .rail-link { width: auto; border-left: none; border-bottom: 3px solid transparent; }
   .rail-link.active { border-bottom-color: var(--pine); }
-  .rail-note { flex-basis: 100%; margin: 8px 16px; border-top: none; padding-top: 0; }
+  .rail-note { margin: 8px 16px; border-top: none; padding-top: 0; }
   .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .overview-columns { grid-template-columns: minmax(0, 1fr); }
   .thumb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -199,9 +200,9 @@ caption { text-align: left; padding: 8px 12px; font-weight: 700; }
   .date-block .value { font-size: 13px; }
   .impact-bar { padding: 6px 12px; }
   .impact-bar .btn-primary { width: 100%; padding: 8px; }
-  .rail { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .rail-links { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .rail-link { white-space: nowrap; padding: 8px 12px; font-size: 13px; }
-  .rail-note { flex-basis: 100%; font-size: 11px; margin: 6px 12px; }
+  .rail-note { font-size: 11px; margin: 6px 12px; }
   main { padding: 12px; }
   .ledger > div { padding: 8px 10px; }
 }

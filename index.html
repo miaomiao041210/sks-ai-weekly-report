@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <title>三棵树美好生活部周报 · Demo</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=9" />
+  <link rel="stylesheet" href="styles.css?v=10" />
   <script src="app.js?v=13" defer></script>
 </head>
 <body>
@@ -29,12 +29,14 @@
 
   <div class="layout">
     <nav class="rail" aria-label="报表视图">
-      <button class="rail-link active" data-view="overview" type="button" aria-current="page">总览</button>
-      <button class="rail-link" data-view="tables" type="button">8 张表格</button>
-      <button class="rail-link" data-view="charts" type="button">TOP3 图表</button>
-      <button class="rail-link" data-view="ai" type="button">AI 草稿</button>
-      <button class="rail-link" data-view="download" type="button">下载与校验</button>
-      <button class="rail-link" data-view="architecture" type="button">架构与证据</button>
+      <div class="rail-links">
+        <button class="rail-link active" data-view="overview" type="button" aria-current="page">总览</button>
+        <button class="rail-link" data-view="tables" type="button">8 张表格</button>
+        <button class="rail-link" data-view="charts" type="button">TOP3 图表</button>
+        <button class="rail-link" data-view="ai" type="button">AI 草稿</button>
+        <button class="rail-link" data-view="download" type="button">下载与校验</button>
+        <button class="rail-link" data-view="architecture" type="button">架构与证据</button>
+      </div>
       <p class="rail-note">面试演示版 · 数据为脱敏样例 · 不代表真实经营结论</p>
     </nav>
 
