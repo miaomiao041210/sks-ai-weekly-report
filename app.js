@@ -3,7 +3,7 @@
 const state = {
   manifest: null, report: null, tables: null, charts: null, ai: null, metrics: null,
   exportManifest: null,
-  activeTable: 0, chartDimension: "销量", generated: false,
+  activeTable: 0, chartDimension: "销量", generated: false, validated: false,
   _lastFocus: null,
 };
 
@@ -312,6 +312,24 @@ function setupNav() {
   el("chart-modal").addEventListener("click", (e) => { if (e.target === el("chart-modal")) closeModal(); });
 }
 
+function validateData() {
+  const box = el("validate-result");
+  box.hidden = false; box.replaceChildren();
+  const ok = document.createElement("div"); ok.className = "validate-ok";
+  text(ok, "校验通过：fail = 0，warn = 0（演示样例）");
+  const note = document.createElement("p"); note.className = "muted";
+  text(note, "fail（硬错误）阻断计算；warn（警告）需人工确认。下方为 warn 定位示例：");
+  const det = document.createElement("details"); det.className = "validate-example";
+  const sum = document.createElement("summary"); text(sum, "warn 示例（精确到文件·行·列）");
+  const pre = document.createElement("pre");
+  text(pre, "周边维度明细表·申请日期：不可解析日期 1 行\n  第2行 申请日期='不是日期'\n周边维度明细表·不含税销量：非数值 1 行\n  第3行 不含税销量='abc'");
+  det.append(sum, pre);
+  box.append(ok, note, det);
+  state.validated = true;
+  const gb = el("generate-btn"); gb.disabled = false; text(gb, "生成周报");
+  text(el("validate-status"), "校验通过，可生成");
+}
+
 function runGenerate() {
   const btn = el("generate-btn"); btn.disabled = true;
   el("prestart").hidden = true; el("results").hidden = false;
@@ -351,11 +369,13 @@ async function init() {
     renderLedger(); renderOverview(); renderTableTabs(); renderFullTable();
     renderCharts(); renderAi(); renderDownload(); renderArchitecture(); setupNav();
     el("generate-btn").addEventListener("click", runGenerate);
+    el("validate-btn").addEventListener("click", validateData);
+    const gb = el("generate-btn"); gb.disabled = true; text(gb, "请先校验数据");
     const q = new URLSearchParams(location.search);
     const ti = Number(q.get("table"));
     if (Number.isInteger(ti) && state.tables[ti]) { state.activeTable = ti; renderTableTabs(); renderFullTable(); }
     state.pendingView = q.get("view");
-    if (q.has("autoplay") || state.pendingView) runGenerate();
+    if (q.has("autoplay") || state.pendingView) { validateData(); runGenerate(); }
   } catch (err) {
     const b = el("error"); b.hidden = false; text(b, "Demo 资产加载失败：" + err.message);
   }

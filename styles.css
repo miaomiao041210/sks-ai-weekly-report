@@ -84,6 +84,14 @@ main { padding: 20px 24px 40px; min-width: 0; }
 .source-table th, .source-table td { border: 1px solid var(--line); padding: 5px 7px; text-align: left; vertical-align: top; }
 .source-table thead th { background: var(--soft); color: var(--pine); font-weight: 700; }
 .import-flow { margin-top: 8px; font-size: 12px; color: var(--pine); background: var(--soft); border: 1px dashed #BFD8C8; padding: 7px 9px; border-radius: 2px; }
+.import-panel { margin-bottom: 14px; }
+.dropzone { border: 2px dashed #BFD8C8; background: var(--soft); border-radius: 4px; padding: 16px; display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; margin-bottom: 10px; }
+.dz-title { color: var(--pine); font-weight: 700; font-size: 13px; }
+.import-actions { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.validate-ok { color: var(--pine); font-weight: 700; font-size: 13px; background: var(--soft); border: 1px solid #BFD8C8; border-left: 4px solid var(--leaf); padding: 8px 10px; margin-top: 10px; }
+.validate-example { margin-top: 8px; }
+.validate-example summary { cursor: pointer; font-size: 12px; color: var(--pine); }
+.validate-example pre { background: var(--paper); border: 1px solid var(--line); padding: 8px; font-size: 11px; overflow: auto; margin-top: 6px; }
 .home-foot { margin: 14px 0 0; font-size: 12px; }
 .error-banner { margin-bottom: 14px; padding: 10px 14px; background: #FBEAE8; color: var(--vermilion); border: 1px solid #E8BDB8; border-radius: 2px; }
 

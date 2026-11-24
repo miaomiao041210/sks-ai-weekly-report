@@ -6,8 +6,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <title>三棵树美好生活部周报 · Demo</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css?v=12" />
-  <script src="app.js?v=19" defer></script>
+  <link rel="stylesheet" href="styles.css?v=13" />
+  <script src="app.js?v=20" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -45,44 +45,51 @@
       <section id="prestart" class="prestart">
         <div class="home-head">
           <h2>三棵树美好生活部 AI 周报助手</h2>
-          <p class="home-tagline">多源 Excel 自动汇总 → 引擎算数 → AI 分析（数字护栏）→ 人工审核 → 导出校验。下方为产品概览；点上方“生成周报”查看预生成的完整结果（8 表 6 图 + AI 草稿 + 导出校验）。</p>
+          <p class="home-tagline">多源 Excel 自动汇总 → 引擎算数 → AI 分析（数值护栏）→ 人工审核 → 导出校验。按“导入 → 校验 → 生成”体验完整流程，点“生成周报”查看预生成结果。</p>
         </div>
+        <section class="home-panel import-panel">
+          <h3>① 导入数据（演示）</h3>
+          <div class="dropzone">
+            <span class="dz-title">拖入 Excel / Word，或点击选择文件</span>
+            <span class="muted">本演示已加载脱敏样例；真实闭环可上传你自己的文件</span>
+          </div>
+          <div class="source-scroll">
+            <table class="source-table">
+              <thead><tr><th>输入文件</th><th>内容</th><th>规模</th></tr></thead>
+              <tbody>
+                <tr><td>周边维度明细表</td><td>周边渠道销售明细</td><td>4500 行×27 列</td></tr>
+                <tr><td>全员营销BI表-美妆</td><td>美妆销售明细</td><td>900 行×18 列</td></tr>
+                <tr><td>在途 / 未发</td><td>在途 / 未发订单</td><td>1108 / 554 行</td></tr>
+                <tr><td>各渠道 / 部门报货 / 全员营销指标</td><td>渠道 / 部门 / 全员目标</td><td>目标表</td></tr>
+                <tr><td>战略品牌清单</td><td>战略品牌拆分</td><td>187 行</td></tr>
+                <tr><td>核心部门分渠道拆解</td><td>部门渠道拆解</td><td>22 行</td></tr>
+                <tr><td>周报 Word 模板</td><td>8 表骨架</td><td>8 表</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="import-actions">
+            <button id="validate-btn" class="btn-secondary" type="button">校验数据</button>
+            <span id="validate-status" class="muted">尚未校验</span>
+          </div>
+          <div id="validate-result" hidden></div>
+        </section>
         <div class="home-grid">
-          <section class="home-panel">
-            <h3>① 数据源与导入</h3>
-            <p class="muted">真实闭环支持上传 Excel/Word，先过校验门禁再计算。本演示使用以下脱敏样例（人名/订单/目标已假化）：</p>
-            <div class="source-scroll">
-              <table class="source-table">
-                <thead><tr><th>输入文件</th><th>内容</th><th>规模</th></tr></thead>
-                <tbody>
-                  <tr><td>周边维度明细表</td><td>周边渠道销售明细</td><td>4500 行×27 列</td></tr>
-                  <tr><td>全员营销BI表-美妆</td><td>美妆销售明细</td><td>900 行×18 列</td></tr>
-                  <tr><td>在途 / 未发</td><td>在途 / 未发订单</td><td>1108 / 554 行</td></tr>
-                  <tr><td>各渠道 / 部门报货 / 全员营销指标</td><td>渠道 / 部门 / 全员目标</td><td>目标表</td></tr>
-                  <tr><td>战略品牌清单</td><td>战略品牌拆分</td><td>187 行</td></tr>
-                  <tr><td>核心部门分渠道拆解</td><td>部门渠道拆解</td><td>22 行</td></tr>
-                  <tr><td>周报 Word 模板</td><td>8 表骨架</td><td>8 表</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="import-flow">导入 Excel/Word → 校验门禁（fail 阻断 / warn 确认）→ 引擎计算</div>
-          </section>
           <section class="home-panel">
             <h3>② 处理流程</h3>
             <ol class="flow">
-              <li>输入校验：缺文件/列 fail 阻断，小毛病 warn 需确认（精确到行/列）。</li>
-              <li>引擎计算周/月/季/年指标，数字唯一来源。</li>
-              <li>大模型只解释指标；数字护栏校验，不符整段替换为引擎事实句。</li>
-              <li>人工可编辑草稿；导出前逐段数字审计，改错即阻断。</li>
-              <li>导出 Word 校验 8 表 6 图 + 数字审计 + SHA256，通过才下载。</li>
+              <li><b>输入校验</b>：校验上传文件的完整性与规范性。缺失必需文件或字段列判定为 fail（硬错误），阻断计算；轻微数据质量问题（日期格式异常、重复行等）判定为 warn（警告），需人工确认后继续，并精确定位至文件、行、列。</li>
+              <li><b>指标计算</b>：由指标引擎统一计算周/月/季/年各项指标（达成、目标、达成率、环比等）。引擎为唯一数值来源，AI 不参与数值计算。</li>
+              <li><b>AI 分析与数值护栏</b>：大模型仅基于引擎指标生成分析文本；数值护栏将 AI 输出中的每个数值与引擎结果做一致性校验，不一致则整段替换为引擎事实表述，防止模型臆造数值。</li>
+              <li><b>人工编辑与导出审计</b>：支持人工修订 AI 草稿；导出前对人工修改的数值再次审计，存在不一致即阻断导出。</li>
+              <li><b>导出校验</b>：导出 Word 时校验 8 表 6 图完整性、人工修改数值一致性，并计算文件 SHA256 哈希（防篡改指纹），全部通过方提供下载。</li>
             </ol>
           </section>
           <section class="home-panel">
             <h3>③ 可信保障</h3>
-            <div class="callout"><b>数字护栏</b>：AI 数字按语义绑定引擎指标，中文数字也拦，编造即替换。</div>
-            <div class="callout"><b>导出审计</b>：人工改错数字导出被阻断；产物 SHA256 可校验。</div>
-            <div class="callout"><b>隐私脱敏</b>：公开侧仅脱敏样例，真实数据与密钥隔离。</div>
-            <div class="callout warn"><b>回退兜底</b>：无 Key/断网自动模板分析，流程不中断。</div>
+            <div class="callout"><b>数值护栏（防模型臆造）</b>：AI 输出的每个数值须与引擎指标一致（如“达成918万”须等于引擎达成值），中文数字写法亦在校验范围；不一致即整段替换为引擎事实表述。</div>
+            <div class="callout"><b>导出审计（防错误流出）</b>：人工修改的数值导出前再次校验，不一致即阻断下载；每份 Word 附 SHA256 哈希指纹，可验证文件是否被篡改。</div>
+            <div class="callout"><b>隐私脱敏（防数据泄露）</b>：公开侧仅使用脱敏样例，人名/订单号/真实目标均已假化；真实数据与密钥隔离于本地，公开网页不含敏感信息。</div>
+            <div class="callout warn"><b>回退兜底（保障可用性）</b>：无网络或未配置 API Key 时自动回退模板分析，界面标注“模板分析”，流程不中断。</div>
           </section>
         </div>
         <p class="muted home-foot">跨表口径与回退详情见“架构与证据”页；真实上传/计算/改稿闭环在 Streamlit 版（本地/受控）。</p>
