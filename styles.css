@@ -49,7 +49,7 @@ code { background: var(--soft); padding: 1px 5px; border-radius: 2px; font-size:
 .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
 .btn-secondary {
   background: var(--surface); color: var(--pine); border: 1px solid var(--pine); border-radius: 2px;
-  padding: 7px 14px; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 10px;
+  padding: 7px 14px; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-block;
 }
 
 .impact-bar {
