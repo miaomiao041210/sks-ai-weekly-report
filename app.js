@@ -246,7 +246,7 @@ function renderDownload() {
       row.append(lv, msg); panel.append(row);
     }
     const hash = document.createElement("div"); hash.className = "export-hash";
-    text(hash, `产物校验${em.ok ? "通过" : "失败"} · SHA256 ${em.sha256.slice(0, 16)}… · ${em.generated_at}`);
+    text(hash, `产物校验${em.ok ? "通过" : "失败"} · ${em.generated_at}`);
     panel.append(hash);
   }
   const notes = el("notes"); notes.replaceChildren();

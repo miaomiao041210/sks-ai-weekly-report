@@ -7,7 +7,7 @@
   <title>三棵树美好生活部周报 · Demo</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css?v=13" />
-  <script src="app.js?v=20" defer></script>
+  <script src="app.js?v=21" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -80,13 +80,13 @@
               <li><b>指标计算</b>：由指标引擎统一计算周/月/季/年各项指标（达成、目标、达成率、环比等）。引擎为唯一数值来源，AI 不参与数值计算。</li>
               <li><b>AI 分析与数值护栏</b>：大模型仅基于引擎指标生成分析文本；数值护栏将 AI 输出中的每个数值与引擎结果做一致性校验，不一致则整段替换为引擎事实表述，防止模型臆造数值。</li>
               <li><b>人工编辑与导出审计</b>：支持人工修订 AI 草稿；导出前对人工修改的数值再次审计，存在不一致即阻断导出。</li>
-              <li><b>导出校验</b>：导出 Word 时校验 8 表 6 图完整性、人工修改数值一致性，并计算文件 SHA256 哈希（防篡改指纹），全部通过方提供下载。</li>
+              <li><b>导出校验</b>：导出 Word 时校验 8 表 6 图完整性、人工修改数值一致性，全部通过方提供下载。</li>
             </ol>
           </section>
           <section class="home-panel">
             <h3>③ 可信保障</h3>
             <div class="callout"><b>数值护栏（防模型臆造）</b>：AI 输出的每个数值须与引擎指标一致（如“达成918万”须等于引擎达成值），中文数字写法亦在校验范围；不一致即整段替换为引擎事实表述。</div>
-            <div class="callout"><b>导出审计（防错误流出）</b>：人工修改的数值导出前再次校验，不一致即阻断下载；每份 Word 附 SHA256 哈希指纹，可验证文件是否被篡改。</div>
+            <div class="callout"><b>导出审计（防错误流出）</b>：人工修改的数值导出前再次校验，不一致即阻断下载，确保错误数字不会流入正式周报。</div>
             <div class="callout"><b>隐私脱敏（防数据泄露）</b>：公开侧仅使用脱敏样例，人名/订单号/真实目标均已假化；真实数据与密钥隔离于本地，公开网页不含敏感信息。</div>
             <div class="callout warn"><b>回退兜底（保障可用性）</b>：无网络或未配置 API Key 时自动回退模板分析，界面标注“模板分析”，流程不中断。</div>
           </section>
