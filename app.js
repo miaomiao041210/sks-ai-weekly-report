@@ -200,7 +200,7 @@ function closeModal() {
 function renderAi() {
   const badge = el("ai-badge");
   badge.className = "badge" + (state.ai.used_ai ? "" : " template");
-  text(badge, state.ai.used_ai ? "AI 草稿 + 数字护栏" : "模板分析");
+  text(badge, state.ai.used_ai ? "AI 分析 + 数字护栏" : "模板分析");
   text(el("ai-meta"), "数据范围 脱敏样例 · 数字来自引擎，护栏拦截幻觉");
   const box = el("ai-sections"); box.replaceChildren();
   for (const [k, label] of Object.entries(AI_LABELS)) {

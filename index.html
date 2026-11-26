@@ -7,7 +7,7 @@
   <title>三棵树美好生活部周报 · Demo</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css?v=14" />
-  <script src="app.js?v=21" defer></script>
+  <script src="app.js?v=22" defer></script>
 </head>
 <body>
   <header class="masthead">
@@ -33,7 +33,7 @@
         <button class="rail-link active" data-view="overview" type="button" aria-current="page">总览</button>
         <button class="rail-link" data-view="tables" type="button">8 张表格</button>
         <button class="rail-link" data-view="charts" type="button">TOP3 图表</button>
-        <button class="rail-link" data-view="ai" type="button">AI 草稿</button>
+        <button class="rail-link" data-view="ai" type="button">AI 分析</button>
         <button class="rail-link" data-view="download" type="button">下载与校验</button>
       </div>
       <p class="rail-note">面试演示版 · 数据为脱敏样例 · 不代表真实经营结论</p>
@@ -79,7 +79,7 @@
               <li><b>输入校验</b>：校验上传文件的完整性与规范性。缺失必需文件或字段列判定为 fail（硬错误），阻断计算；轻微数据质量问题（日期格式异常、重复行等）判定为 warn（警告），需人工确认后继续，并精确定位至文件、行、列。</li>
               <li><b>指标计算</b>：由指标引擎统一计算周/月/季/年各项指标（达成、目标、达成率、环比等）。引擎为唯一数值来源，AI 不参与数值计算。</li>
               <li><b>AI 分析与数值护栏</b>：大模型仅基于引擎指标生成分析文本；数值护栏将 AI 输出中的每个数值与引擎结果做一致性校验，不一致则整段替换为引擎事实表述，防止模型臆造数值。</li>
-              <li><b>人工编辑与导出审计</b>：支持人工修订 AI 草稿；导出前对人工修改的数值再次审计，存在不一致即阻断导出。</li>
+              <li><b>人工编辑与导出审计</b>：支持人工修订 AI 分析；导出前对人工修改的数值再次审计，存在不一致即阻断导出。</li>
               <li><b>导出校验</b>：导出 Word 时校验 8 表 6 图完整性、人工修改数值一致性，全部通过方提供下载。</li>
             </ol>
           </section>
@@ -123,7 +123,7 @@
 
         <section id="view-ai" class="view">
           <div class="ai-head">
-            <h2>AI 草稿</h2>
+            <h2>AI 分析</h2>
             <span id="ai-badge" class="badge"></span>
           </div>
           <p id="ai-meta" class="muted"></p>
